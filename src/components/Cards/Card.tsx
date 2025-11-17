@@ -27,9 +27,9 @@ const Card: React.FC<TCardProps> = ({ cardDetails }) => {
         {showDetails ? "Hide card number" : "Show card number"}
       </button>
 
-      <div className="z-2 w-full min-w-[358px] overflow-hidden min-h-[220px] max-w-[414px] max-h-[248px] whitespace-nowrap bg-gradient-to-br from-[#01D167] to-[#00b857] rounded-2xl flex flex-col p-6 gap-4 relative overflow-hidden">
+      <div className="z-2 w-full min-w-[358px] min-h-[220px] max-w-[414px] max-h-[248px] whitespace-nowrap bg-linear-to-br from-[#01D167] to-[#00b857] rounded-2xl flex flex-col p-6 gap-4 relative overflow-hidden">
         {/* Background pattern */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 rounded-2xl"></div>
+        <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-white/10 rounded-2xl"></div>
 
         <div className="self-end z-10">
           <img src={Logo} alt="Logo" className="h-8" />

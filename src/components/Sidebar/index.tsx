@@ -60,7 +60,7 @@ const Sidebar: React.FC = () => {
           <button
             key={item.label}
             className={`menu-item text-gray-400 bg-none border-none w-full flex items-center gap-4 cursor-pointer hover:text-[#01D167]  ${
-              activeItem === item.label ? "!text-[#01D167] font-bold" : ""
+              activeItem === item.label ? "text-[#01D167]! font-bold" : ""
             }`}
             onClick={() => handleMenuClick(item.label)}
           >

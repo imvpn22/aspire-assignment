@@ -65,7 +65,7 @@ input:disabled {
   }
 
   .app-logo {
-    @apply absolute p-2 pr-2 pt-0 items-end right-0 z-[98];
+    @apply absolute p-2 pr-2 pt-0 items-end right-0 z-98;
   }
 
   .logo-subtext {
@@ -73,7 +73,7 @@ input:disabled {
   }
 
   .menubar {
-    @apply fixed bottom-0 w-full flex-row overflow-x-auto bg-white border-t border-gray-200 z-[999] justify-evenly py-2 box-border gap-0;
+    @apply fixed bottom-0 w-full flex-row overflow-x-auto bg-white border-t border-gray-200 z-999 justify-evenly py-2 box-border gap-0;
   }
 
   .menu-item {
