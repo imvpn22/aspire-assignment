@@ -32,6 +32,7 @@ export const getCards = async () => {
 
 export const getCardTransactions = async (cardNumber?: string) => {
   return fakeApi(() => {
+    console.log("Fetching transactions for card:", cardNumber);
     return DUMMY_TRANSACTIONS;
   });
 };

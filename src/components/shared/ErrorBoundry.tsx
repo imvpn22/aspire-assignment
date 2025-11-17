@@ -1,4 +1,4 @@
-import React, { ReactNode, Component } from "react";
+import React, { Component, type ReactNode } from "react";
 
 import ErrorInfo from "./ErrorInfo";
 
