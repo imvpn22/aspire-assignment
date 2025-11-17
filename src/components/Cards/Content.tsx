@@ -11,9 +11,7 @@ import Spinner from "../shared/Spinner";
 import ErrorInfo from "../shared/ErrorInfo";
 import { useGetCards, useGetCardTransactions } from "../../query/cards.query";
 
-type TContentProps = {};
-
-const Content: React.FC<TContentProps> = ({}) => {
+const Content: React.FC = () => {
   const [activeCardIndex, setActiveCardIndex] = React.useState(0);
 
   const {

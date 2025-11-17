@@ -13,12 +13,12 @@ import {
 import Spinner from "../shared/Spinner";
 import ErrorInfo from "../shared/ErrorInfo";
 
-interface TransactionListProps {
+type TTransactionListProps = {
   transactions: Transaction[];
   isLoading: boolean;
   isError: boolean;
   refetch: () => void;
-}
+};
 
 const TransactionCategory: Record<string, TTransactionCategory> = {
   FOOD: "Food & Drink",
@@ -30,7 +30,7 @@ const TransactionCategory: Record<string, TTransactionCategory> = {
   INCOME: "Income",
 };
 
-const TransactionList: React.FC<TransactionListProps> = ({
+const TransactionList: React.FC<TTransactionListProps> = ({
   transactions,
   isLoading,
   isError,

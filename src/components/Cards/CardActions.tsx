@@ -7,13 +7,13 @@ import {
   UndoIcon,
 } from "../Icons";
 
-interface ActionItem {
+type TActionItem = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   onClick?: () => void;
-}
+};
 
-const CARD_ACTIONS: ActionItem[] = [
+const CARD_ACTIONS: TActionItem[] = [
   {
     icon: SnowflakeIcon,
     label: "Freeze cards",
@@ -36,11 +36,11 @@ const CARD_ACTIONS: ActionItem[] = [
   },
 ];
 
-interface ActionItemProps {
-  action: ActionItem;
-}
+type TActionItemProps = {
+  action: TActionItem;
+};
 
-const ActionItemComponent: React.FC<ActionItemProps> = ({ action }) => {
+const ActionItemComponent: React.FC<TActionItemProps> = ({ action }) => {
   const { icon: Icon, label, onClick } = action;
 
   return (
@@ -58,9 +58,7 @@ const ActionItemComponent: React.FC<ActionItemProps> = ({ action }) => {
   );
 };
 
-interface CardActionsProps {}
-
-const CardActions: React.FC<CardActionsProps> = ({}) => {
+const CardActions: React.FC = () => {
   return (
     <div className="bg-[#EDF3FF] rounded-lg py-6 px-4 flex items-start gap-2 justify-evenly card-actions h-fit">
       {CARD_ACTIONS.map((action, index) => (

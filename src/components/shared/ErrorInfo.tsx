@@ -1,12 +1,12 @@
 import React from "react";
 import { ErrorOutlineIcon } from "../Icons";
 
-interface ErrorProps {
+type TErrorProps = {
   onRetry?: () => void;
   message?: string;
-}
+};
 
-const ErrorInfo: React.FC<ErrorProps> = ({
+const ErrorInfo: React.FC<TErrorProps> = ({
   onRetry = () => window.location.reload(),
   message = "Something went wrong. Please try again.",
 }) => {

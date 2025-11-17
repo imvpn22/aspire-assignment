@@ -1,11 +1,11 @@
 import React from "react";
 import type { TCard } from "../../types";
 
-interface CardDetailsProps {
+type TCardDetailsProps = {
   cardDetails: TCard;
-}
+};
 
-const CardDetails: React.FC<CardDetailsProps> = ({ cardDetails }) => {
+const CardDetails: React.FC<TCardDetailsProps> = ({ cardDetails }) => {
   const { cardType, cardNumber, cardHolderName, expiryDate, cvv, bankName } =
     cardDetails ?? {};
 

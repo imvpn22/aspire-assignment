@@ -1,13 +1,13 @@
 import React, { useState, type ReactNode } from "react";
 import { ChevronCircleUpIcon } from "../Icons";
 
-interface PanelProps {
+type TPanelProps = {
   header: ReactNode;
   children: React.ReactNode;
   defaultExpanded?: boolean;
-}
+};
 
-const Panel: React.FC<PanelProps> = ({
+const Panel: React.FC<TPanelProps> = ({
   header,
   children,
   defaultExpanded = false,

@@ -1,13 +1,13 @@
 import React, { type ReactNode } from "react";
 
-interface ModalProps {
+type TModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
   title?: string;
-}
+};
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+const Modal: React.FC<TModalProps> = ({ isOpen, onClose, children, title }) => {
   if (!isOpen) return null;
 
   return (

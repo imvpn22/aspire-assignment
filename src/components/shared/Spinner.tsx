@@ -1,11 +1,11 @@
 import React from "react";
 
-interface SpinnerProps {
+type TSpinnerProps = {
   size?: "small" | "medium" | "large";
   color?: string;
-}
+};
 
-const Spinner: React.FC<SpinnerProps> = ({
+const Spinner: React.FC<TSpinnerProps> = ({
   size = "medium",
   color = "#3b82f6",
 }) => {

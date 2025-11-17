@@ -4,11 +4,11 @@ import Logo from "../../assets/aspire_logo_white.svg";
 import VisaLogo from "../../assets/visa_Logo.svg";
 import type { TCard } from "../../types";
 
-interface CardProps {
+type TCardProps = {
   cardDetails?: TCard;
-}
+};
 
-const Card: React.FC<CardProps> = ({ cardDetails }) => {
+const Card: React.FC<TCardProps> = ({ cardDetails }) => {
   const { cardNumber, expiryDate, cvv, cardHolderName } = cardDetails ?? {};
 
   const [showDetails, setShowDetails] = useState(true);

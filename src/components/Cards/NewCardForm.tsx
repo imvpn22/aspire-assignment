@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import type { TCard } from "../../types";
 import { useAddNewCard } from "../../query/cards.query";
 
-interface NewCardFormProps {
+type TNewCardFormProps = {
   onSuccess?: () => void;
-}
+};
 
-const NewCardForm: React.FC<NewCardFormProps> = ({ onSuccess }) => {
+const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
   const [newCardName, setNewCardName] = useState("");
 
   const { mutateAsync, isPending } = useAddNewCard();

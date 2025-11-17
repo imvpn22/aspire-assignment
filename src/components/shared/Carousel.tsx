@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import type { ReactNode } from "react";
 
-interface CarouselProps {
+type TCarouselProps = {
   children: ReactNode[];
   onIndexChange?: (index: number) => void;
   className?: string;
-}
+};
 
-const Carousel: React.FC<CarouselProps> = ({
+const Carousel: React.FC<TCarouselProps> = ({
   children,
   onIndexChange,
   className,
