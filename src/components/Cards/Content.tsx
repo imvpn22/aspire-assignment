@@ -42,7 +42,7 @@ const Content: React.FC<TContentProps> = ({}) => {
   }
 
   return (
-    <div className="text-black rounded-md flex flex-1 card-content max-w-full shadow-md p-6 border border-gray-100">
+    <div className="text-black rounded-md flex flex-1 card-content shadow-md p-6 border border-gray-100">
       <div className="flex flex-col gap-6 max-w-[381px] w-full h-fit">
         <Carousel
           className="card-carousel max-w-[381px] h-fit"
@@ -54,7 +54,7 @@ const Content: React.FC<TContentProps> = ({}) => {
         </Carousel>
         <CardActions />
       </div>
-      <div className="flex flex-col gap-8 flex-1 max-w-[500px]  card-details border-box pl-6">
+      <div className="flex flex-col gap-8 flex-1 max-w-[500px] card-details border-box pl-6 w-full">
         <Panel
           header={
             <div className="flex gap-2 items-center text-[#0C365A]">
@@ -62,7 +62,6 @@ const Content: React.FC<TContentProps> = ({}) => {
               <span className="">Card Details</span>
             </div>
           }
-          defaultExpanded
         >
           <CardDetails cardDetails={cardData} />
         </Panel>

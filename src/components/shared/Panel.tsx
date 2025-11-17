@@ -34,7 +34,7 @@ const Panel: React.FC<PanelProps> = ({
         </span>
       </div>
       <div
-        className={`overflow-auto transition-all duration-300 ease-in-out p-4 ${
+        className={`overflow-auto transition-all duration-300 ease-in-out ${
           isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
