@@ -1,0 +1,86 @@
+import React from "react";
+import Carousel from "../shared/Carousel";
+import Card from "./Card";
+import CardActions from "./CardActions";
+import Panel from "../shared/Panel";
+import CardDetails from "./CardDetails";
+import TransactionList from "./TransactionList";
+import { DUMMY_CARD_DATA } from "../../constants/cards.constants";
+import { CreditCardIcon, TransactionIcon } from "../Icons";
+import Spinner from "../shared/Spinner";
+import ErrorInfo from "../shared/ErrorInfo";
+import { useGetCards, useGetCardTransactions } from "../../query/cards.query";
+
+type TContentProps = {};
+
+const Content: React.FC<TContentProps> = ({}) => {
+  const [activeCardIndex, setActiveCardIndex] = React.useState(0);
+
+  const {
+    data: cardsData = [],
+    isLoading: isCardsLoading,
+    isError: isCardsError,
+    refetch: refetchCards,
+  } = useGetCards();
+
+  const cardData = cardsData[activeCardIndex] ?? DUMMY_CARD_DATA;
+
+  const {
+    data: transactions,
+    isLoading: isTransactionsLoading,
+    isError: isTransactionsError,
+    refetch: refetchTransactions,
+  } = useGetCardTransactions(cardData.cardNumber);
+
+  if (isCardsLoading) {
+    return <Spinner />;
+  }
+
+  if (isCardsError) {
+    return <ErrorInfo onRetry={refetchCards} />;
+  }
+
+  return (
+    <div className="text-black p-6 border border-gray-200 rounded-md flex gap-8 flex-1">
+      <div className="flex flex-col gap-8">
+        <Carousel className="w-[414px]" onIndexChange={setActiveCardIndex}>
+          {cardsData.map((card) => (
+            <Card key={card.cardNumber} cardDetails={card} />
+          ))}
+        </Carousel>
+        <CardActions />
+      </div>
+      <div className="flex flex-col gap-8 flex-1 max-w-[420px] pt-9">
+        <Panel
+          header={
+            <div className="flex gap-2 items-center text-[#0C365A]">
+              <CreditCardIcon className="size-5" />
+              <span className="">Card Details</span>
+            </div>
+          }
+          defaultExpanded
+        >
+          <CardDetails cardDetails={cardData} />
+        </Panel>
+        <Panel
+          header={
+            <div className="flex gap-2 items-center text-[#0C365A]">
+              <TransactionIcon className="size-5" />
+              <span className="">Recent transaction</span>
+            </div>
+          }
+          defaultExpanded
+        >
+          <TransactionList
+            transactions={transactions ?? []}
+            isLoading={isTransactionsLoading}
+            isError={isTransactionsError}
+            refetch={refetchTransactions}
+          />
+        </Panel>
+      </div>
+    </div>
+  );
+};
+
+export default Content;
