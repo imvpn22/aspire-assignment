@@ -2,7 +2,6 @@ import {
   FaArrowCircleUp,
   FaChevronCircleUp,
   FaCreditCard,
-  FaGooglePay,
   FaHome,
   FaHospital,
   FaPlane,
@@ -11,12 +10,12 @@ import {
   FaUndoAlt,
   FaUser,
 } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronRight, FaGoogle } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { IoMdAddCircle, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import {
   MdAttachMoney,
-  MdDeleteOutline,
+  MdDelete,
   MdElectricBolt,
   MdErrorOutline,
   MdFastfood,
@@ -35,9 +34,9 @@ export {
   IoMdEyeOff as EyeOffIcon,
   FaRegSnowflake as SnowflakeIcon,
   MdSpeed as SpeedIcon,
-  FaGooglePay as GooglePayIcon,
+  FaGoogle as GoogleIcon,
   FaUndoAlt as UndoIcon,
-  MdDeleteOutline as DeleteIcon,
+  MdDelete as DeleteIcon,
   MdFastfood as FastfoodIcon,
   FaPlane as PlaneIcon,
   FaShoppingCart as ShoppingCartIcon,

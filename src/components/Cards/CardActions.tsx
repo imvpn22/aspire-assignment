@@ -1,7 +1,7 @@
 import React from "react";
 import {
   DeleteIcon,
-  GooglePayIcon,
+  GoogleIcon,
   SnowflakeIcon,
   SpeedIcon,
   UndoIcon,
@@ -23,7 +23,7 @@ const CARD_ACTIONS: TActionItem[] = [
     label: "Set Spend Limit",
   },
   {
-    icon: GooglePayIcon,
+    icon: GoogleIcon,
     label: "Add to GPay",
   },
   {
@@ -45,12 +45,10 @@ const ActionItemComponent: React.FC<TActionItemProps> = ({ action }) => {
 
   return (
     <button
-      className="flex flex-col gap-2 w-fit max-w-16 items-center"
+      className="cursor-pointer flex flex-col gap-2 w-fit max-w-18 items-center hover:bg-[#DDE7FF] py-2 px-1 rounded-lg transition-colors"
       onClick={onClick}
     >
-      <div className="p-3 rounded-full bg-[#335BAF] text-white">
-        <Icon className="" />
-      </div>
+      <Icon className="size-8 p-1.5 rounded-full bg-[#335BAF] text-white" />
       <span className="text-xs word-wrap text-center text-[#335BAF]">
         {label}
       </span>
@@ -60,7 +58,7 @@ const ActionItemComponent: React.FC<TActionItemProps> = ({ action }) => {
 
 const CardActions: React.FC = () => {
   return (
-    <div className="bg-[#EDF3FF] rounded-lg py-6 px-4 flex items-start gap-2 justify-evenly card-actions h-fit">
+    <div className="bg-[#EDF3FF] rounded-lg py-4 px-4 flex items-start gap-2 justify-evenly card-actions h-fit">
       {CARD_ACTIONS.map((action, index) => (
         <ActionItemComponent key={index} action={action} />
       ))}
