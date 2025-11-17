@@ -14,10 +14,10 @@ const Card: React.FC<CardProps> = ({ cardDetails }) => {
   const [showDetails, setShowDetails] = useState(true);
 
   return (
-    <div className="rounded-lg flex flex-col text-white">
+    <div className="rounded-lg flex flex-col text-white w-full pt-8 relative items-center box-border">
       <button
         onClick={() => setShowDetails((prev) => !prev)}
-        className="flex items-center gap-2 self-end font-semibold text-[#01D167] text-sm hover:text-[#00b857] transition-colors duration-200 mb-3"
+        className="cursor-pointer bg-white flex items-center gap-2 self-end font-semibold text-[#01D167] text-xs hover:text-[#00b857] transition-colors duration-200 pb-6 rounded-t-md px-2 py-1 absolute top-0 left-[50%] mt-1 z-1 translate-x-[-50%]"
       >
         {showDetails ? (
           <EyeOffIcon className="w-5 h-5" />
@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({ cardDetails }) => {
         {showDetails ? "Hide card number" : "Show card number"}
       </button>
 
-      <div className="w-[414px] h-[248px] bg-gradient-to-br from-[#01D167] to-[#00b857] rounded-2xl flex flex-col p-6 gap-4 relative overflow-hidden">
+      <div className="z-2 w-full min-w-[358px] overflow-hidden min-h-[220px] max-w-[414px] max-h-[248px] whitespace-nowrap bg-gradient-to-br from-[#01D167] to-[#00b857] rounded-2xl flex flex-col p-6 gap-4 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 rounded-2xl"></div>
 

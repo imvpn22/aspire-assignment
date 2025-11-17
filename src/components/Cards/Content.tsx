@@ -21,6 +21,7 @@ const Content: React.FC<TContentProps> = ({}) => {
     isLoading: isCardsLoading,
     isError: isCardsError,
     refetch: refetchCards,
+    error: cardsError,
   } = useGetCards();
 
   const cardData = cardsData[activeCardIndex] ?? DUMMY_CARD_DATA;
@@ -37,20 +38,23 @@ const Content: React.FC<TContentProps> = ({}) => {
   }
 
   if (isCardsError) {
-    return <ErrorInfo onRetry={refetchCards} />;
+    return <ErrorInfo onRetry={refetchCards} message={cardsError.message} />;
   }
 
   return (
-    <div className="text-black p-6 border border-gray-200 rounded-md flex gap-8 flex-1">
-      <div className="flex flex-col gap-8">
-        <Carousel className="w-[414px]" onIndexChange={setActiveCardIndex}>
+    <div className="text-black rounded-md flex flex-1 card-content max-w-full shadow-md p-6 border border-gray-100">
+      <div className="flex flex-col gap-6 max-w-[381px] w-full h-fit">
+        <Carousel
+          className="card-carousel max-w-[381px] h-fit"
+          onIndexChange={setActiveCardIndex}
+        >
           {cardsData.map((card) => (
             <Card key={card.cardNumber} cardDetails={card} />
           ))}
         </Carousel>
         <CardActions />
       </div>
-      <div className="flex flex-col gap-8 flex-1 max-w-[420px] pt-9">
+      <div className="flex flex-col gap-8 flex-1 max-w-[500px]  card-details border-box pl-6">
         <Panel
           header={
             <div className="flex gap-2 items-center text-[#0C365A]">

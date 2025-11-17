@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import SubHeader from "./SubHeader";
+import CardTab from "./CardTab";
 import Content from "./Content";
 import Modal from "../shared/Modal";
 import NewCardForm from "./NewCardForm";
@@ -17,9 +17,9 @@ const Cards: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 p-10 bg-white flex flex-col gap-6">
+    <div className="bg-white flex flex-col gap-6 card-container flex-1 p-8">
       <Header onAddNewCard={openNewCardModal} />
-      <SubHeader />
+      <CardTab />
       <Content />
       <Modal
         isOpen={isNewCardModalOpen}

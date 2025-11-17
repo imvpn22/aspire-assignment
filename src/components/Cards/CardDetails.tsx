@@ -14,7 +14,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({ cardDetails }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg">
+    <div className="p-6 bg-white rounded-lg shadow-lg whitespace-nowrap">
       <div className="flex justify-between items-center mb-4">
         <span className="text-sm font-medium text-gray-600">
           {cardType} Card

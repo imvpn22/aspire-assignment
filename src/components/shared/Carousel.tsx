@@ -3,14 +3,14 @@ import type { ReactNode } from "react";
 
 interface CarouselProps {
   children: ReactNode[];
-  className?: string;
   onIndexChange?: (index: number) => void;
+  className?: string;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
   children,
-  className = "",
   onIndexChange,
+  className,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -20,13 +20,18 @@ const Carousel: React.FC<CarouselProps> = ({
   };
 
   return (
-    <div className={`flex flex-col gap-2 overflow-hidden ${className}`}>
+    <div
+      className={`flex flex-col gap-2 box-border overflow-hidden w-full flex-1 ${className}`}
+    >
       <div
         className="flex transition-transform duration-300 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {children.map((child, index) => (
-          <div key={index} className="">
+          <div
+            key={index}
+            className="min-w-full flex items-center justify-center box-border px-3"
+          >
             {child}
           </div>
         ))}

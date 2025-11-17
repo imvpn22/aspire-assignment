@@ -19,7 +19,7 @@ const Panel: React.FC<PanelProps> = ({
   };
 
   return (
-    <div className="border border-gray-100 rounded-md shadow-sm">
+    <div className="border border-gray-100 rounded-md shadow-sm w-full">
       <div
         className="cursor-pointer p-3 bg-gray-100 border-b border-gray-100 flex justify-between items-center hover:bg-gray-200 transition-colors duration-200"
         onClick={toggleExpanded}
@@ -34,11 +34,11 @@ const Panel: React.FC<PanelProps> = ({
         </span>
       </div>
       <div
-        className={`overflow-auto transition-all duration-300 ease-in-out ${
+        className={`overflow-auto transition-all duration-300 ease-in-out p-4 ${
           isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="p-4">{children}</div>
+        {children}
       </div>
     </div>
   );

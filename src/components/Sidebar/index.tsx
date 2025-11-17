@@ -47,20 +47,20 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#0C365A] w-[340px] h-full flex flex-col p-10 text-white gap-16">
-      <div className="flex flex-col gap-4">
+    <div className="bg-[#0C365A] w-[340px] h-full flex flex-col text-white gap-16 sidebar">
+      <div className="flex flex-col gap-4 px-10 pt-10 app-logo">
         <img src={Logo} alt="Logo" className="w-32 h-auto" />
-        <div className="opacity-30">
+        <div className="opacity-30 logo-subtext">
           Trusted way of banking for 3,000+ SMEs and startups in Singapore
         </div>
       </div>
 
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-10 px-10 menubar">
         {menuItems.map((item) => (
           <button
             key={item.label}
-            className={`bg-none border-none w-full flex items-center gap-4 cursor-pointer hover:text-[#01D167]  ${
-              activeItem === item.label ? "text-[#01D167] font-bold" : ""
+            className={`menu-item text-gray-400 bg-none border-none w-full flex items-center gap-4 cursor-pointer hover:text-[#01D167]  ${
+              activeItem === item.label ? "!text-[#01D167] font-bold" : ""
             }`}
             onClick={() => handleMenuClick(item.label)}
           >

@@ -49,6 +49,9 @@ const TransactionList: React.FC<TransactionListProps> = ({
       {transactions.map((transaction) => (
         <Item key={transaction.id} transaction={transaction} />
       ))}
+      <div className="text-center text-[#01D167] bg-[#EDFFF5] py-3 font-semibold text-sm">
+        View all card transactions
+      </div>
     </div>
   );
 };
@@ -71,7 +74,7 @@ const getRandomBgColor = () => {
 const Item: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
   const { description, date, amount, type } = transaction;
   return (
-    <div className="flex justify-between items-center py-3 border-b border-gray-200 gap-4">
+    <div className="flex justify-between items-center py-3 px-2 border-b border-gray-100 gap-4">
       <div className={`p-3 rounded-full ${getRandomBgColor()}`}>
         <TransactionCategoryIcon category={transaction.category} />
       </div>

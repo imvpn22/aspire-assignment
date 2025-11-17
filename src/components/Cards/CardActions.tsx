@@ -62,7 +62,7 @@ interface CardActionsProps {}
 
 const CardActions: React.FC<CardActionsProps> = ({}) => {
   return (
-    <div className="bg-[#EDF3FF] rounded-lg p-6 flex items-start gap-2 justify-evenly">
+    <div className="bg-[#EDF3FF] rounded-lg py-6 px-4 flex items-start gap-2 justify-evenly card-actions h-fit">
       {CARD_ACTIONS.map((action, index) => (
         <ActionItemComponent key={index} action={action} />
       ))}
