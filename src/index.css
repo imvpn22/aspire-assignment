@@ -1,7 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,130 +27,88 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  @apply font-medium text-blue-500 no-underline hover:text-blue-600;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  width: 100%;
-  height: 100vh;
+  @apply m-0 flex items-center w-full h-screen;
 }
 
 #root {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  @apply h-screen w-full flex flex-col flex-1;
+}
+
+input {
+  @apply border border-gray-300 shadow-none px-4 py-2 rounded-lg;
+  font: inherit;
+}
+
+input:focus {
+  @apply outline-none border-indigo-500;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+input:disabled {
+  @apply opacity-50 cursor-not-allowed;
 }
 
 /* Mobile breakpoint */
 @media (max-width: 1024px) {
   .app-root {
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    flex: 1;
+    @apply flex-col relative overflow-hidden flex-1;
     height: auto;
   }
 
   .sidebar {
-    width: 100%;
+    @apply w-full;
     height: auto;
   }
 
   .app-logo {
-    position: absolute;
-    padding: 8px 8px 0 0;
-    align-items: end;
-    right: 0;
-    z-index: 98;
+    @apply absolute p-2 pr-2 pt-0 items-end right-0 z-[98];
   }
 
   .logo-subtext {
-    display: none;
+    @apply hidden;
   }
 
   .menubar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-    background-color: white;
-    border-top: 1px solid #e5e7eb;
-    z-index: 999;
-    gap: 0;
-    justify-content: space-evenly;
-    padding: 8px 0;
-    box-sizing: border-box;
+    @apply fixed bottom-0 w-full flex-row overflow-x-auto bg-white border-t border-gray-200 z-[999] justify-evenly py-2 box-border gap-0;
   }
 
   .menu-item {
-    flex-direction: column;
-    font-size: 10px;
-    gap: 4px;
+    @apply flex-col text-xs gap-1;
   }
 
   .card-container {
-    padding: 0;
-    padding-top: 50px;
-    padding-bottom: 56px;
-    gap: 10px;
-    background-color: #0c365a;
-    position: relative;
-    overflow: auto;
+    @apply p-0 pt-12 pb-14 bg-[#0c365a] relative overflow-auto gap-2.5;
   }
 
   .card-header {
-    padding: 0 8px;
-    color: white !important;
-    gap: 10px;
-    position: sticky;
-    top: 0;
+    @apply px-2 text-white sticky top-0 gap-2.5;
   }
 
   .card-tab {
-    padding: 0 8px;
-    color: white !important;
-    position: sticky;
-    top: 76px;
+    @apply px-2 text-white sticky top-[76px];
   }
 
   .card-content {
-    flex-direction: column;
-    align-items: center;
-    border: none;
-    box-shadow: none;
-    padding: 0;
+    @apply flex-col items-center border-0 shadow-none p-0 py-4;
   }
 
   .card-carousel {
-    position: sticky;
-    top: 116px;
-    margin-bottom: 20px;
+    @apply sticky top-[116px];
   }
 
   .card-info {
-    width: 100%;
+    @apply w-full;
   }
 
   .card-actions {
-    /* padding: 0 8px; */
-    border-radius: 16px 16px 0 0;
-    z-index: 99;
+    @apply rounded-b-none rounded-t-2xl z-[99];
   }
 
   .card-details {
-    background-color: white;
-    padding: 16px;
-    z-index: 99;
+    @apply bg-white p-4 z-[99];
   }
 }

@@ -36,6 +36,22 @@ const NewCardForm: React.FC<NewCardFormProps> = ({ onSuccess }) => {
         autoFocus
       />
 
+      <input
+        type="text"
+        placeholder="Card Number"
+        className="border p-2 rounded"
+        disabled
+        value="Auto-generated"
+      />
+
+      <input
+        type="date"
+        placeholder="Expiry Date"
+        className="border p-2 rounded"
+        disabled
+        value="Auto-generated"
+      />
+
       <div className="flex items-center gap-4 self-end">
         <button
           type="button"
