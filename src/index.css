@@ -65,7 +65,7 @@ input:disabled {
   }
 
   .app-logo {
-    @apply absolute p-2 pr-2 pt-0 items-end right-0 z-98;
+    @apply absolute p-2 pr-2 pt-0 items-end right-0 z-1 m-2;
   }
 
   .logo-subtext {

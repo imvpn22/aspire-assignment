@@ -2,6 +2,7 @@ import React from "react";
 import type { Transaction, TTransactionCategory } from "../../types";
 import {
   AttachMoneyIcon,
+  ChevronRightIcon,
   CreditCardIcon,
   ElectricBoltIcon,
   FastfoodIcon,
@@ -74,21 +75,32 @@ const getRandomBgColor = () => {
 const Item: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
   const { description, date, amount, type } = transaction;
   return (
-    <div className="flex justify-between items-center py-3 px-2 border-b border-gray-100 gap-4">
+    <div className="flex justify-between items-center py-3 px-4 border-b border-gray-100 gap-4">
       <div className={`p-3 rounded-full ${getRandomBgColor()}`}>
         <TransactionCategoryIcon category={transaction.category} />
       </div>
       <div className="flex justify-between items-center flex-1">
-        <div>
-          <div className="font-medium">{description}</div>
-          <div className="text-sm text-gray-500">{date}</div>
-        </div>
-        <div
-          className={`font-semibold ${
-            type === "credit" ? "text-green-600" : "text-red-600"
-          }`}
-        >
-          {type === "credit" ? "+" : "-"}${amount.toFixed(2)}
+        <div className="flex flex-col gap-1 flex-1">
+          <div className="font-medium flex justify-between items-center w-full">
+            {description}{" "}
+            <div
+              className={`font-semibold flex items-center gap-1 ${
+                type === "credit" ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {type === "credit" ? "+" : "-"}${amount.toFixed(2)}
+              <ChevronRightIcon className="size-3 text-gray-300" />
+            </div>
+          </div>
+          <div className="text-sm text-gray-400">{date}</div>
+          <div className="text-xs flex items-center font-medium gap-1">
+            <CreditCardIcon className="size-4 mr-1 p-1 bg-[#325BAF] text-white rounded-md" />
+            <span className="text-[#325BAF]">
+              {type === "credit"
+                ? `Refund on debit card`
+                : `Charged to debit card`}
+            </span>
+          </div>
         </div>
       </div>
     </div>

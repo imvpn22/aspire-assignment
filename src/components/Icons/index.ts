@@ -11,6 +11,7 @@ import {
   FaUndoAlt,
   FaUser,
 } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { IoMdAddCircle, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import {
@@ -46,4 +47,5 @@ export {
   MdAttachMoney as AttachMoneyIcon,
   FaChevronCircleUp as ChevronCircleUpIcon,
   MdErrorOutline as ErrorOutlineIcon,
+  FaChevronRight as ChevronRightIcon,
 };

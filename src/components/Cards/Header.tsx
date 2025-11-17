@@ -3,9 +3,10 @@ import { AddCircleIcon } from "../Icons";
 
 type THeaderProps = {
   onAddNewCard: () => void;
+  balance?: number;
 };
 
-const Header: React.FC<THeaderProps> = ({ onAddNewCard }) => {
+const Header: React.FC<THeaderProps> = ({ onAddNewCard, balance }) => {
   return (
     <header className="flex flex-col gap-3 card-header text-gray-900">
       <div className="text-sm font-semibold">Available Balance</div>
@@ -14,7 +15,9 @@ const Header: React.FC<THeaderProps> = ({ onAddNewCard }) => {
           <div className="bg-[#01D167] rounded-md py-1 px-3 font-bold text-sm">
             S$
           </div>
-          <span className="text-3xl font-bold">$50,000.00</span>
+          <span className="text-3xl font-bold">
+            ${balance?.toLocaleString() || "0.00"}
+          </span>
         </div>
         <button
           onClick={onAddNewCard}
