@@ -58,4 +58,42 @@ describe("Input Component", () => {
 
     expect(mockOnChange).toHaveBeenCalled();
   });
+
+  test("handles different input types", () => {
+    render(<Input label="Password" type="password" />);
+
+    const inputElement = screen.getByLabelText("Password");
+    expect(inputElement).toHaveAttribute("type", "password");
+  });
+
+  test("supports controlled input with value prop", async () => {
+    const user = userEvent.setup();
+    const mockOnChange = vi.fn();
+
+    render(
+      <Input label="Controlled" value="initial" onChange={mockOnChange} />
+    );
+
+    const inputElement = screen.getByDisplayValue("initial");
+    expect(inputElement).toHaveValue("initial");
+
+    await user.clear(inputElement);
+    await user.type(inputElement, "new value");
+
+    expect(mockOnChange).toHaveBeenCalled();
+  });
+
+  test("applies custom HTML attributes", () => {
+    render(<Input label="Custom" data-testid="custom-input" maxLength={10} />);
+
+    const inputElement = screen.getByTestId("custom-input");
+    expect(inputElement).toHaveAttribute("maxLength", "10");
+  });
+
+  test("has proper focus styles", () => {
+    render(<Input label="Focus Test" />);
+
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toHaveClass("focus:ring-2", "focus:ring-blue-500");
+  });
 });

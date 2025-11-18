@@ -68,5 +68,53 @@ describe("Card Utility Functions", () => {
       const uniqueResults = new Set(results);
       expect(uniqueResults.size).toBeGreaterThan(1);
     });
+
+    it("should not generate CVV starting with 0", () => {
+      // Generate multiple CVVs to test this scenario
+      const results = Array.from({ length: 50 }, () => generateRandomCvv());
+      results.forEach((cvv) => {
+        expect(cvv).not.toMatch(/^0/);
+      });
+    });
+  });
+
+  describe("Integration tests", () => {
+    it("should generate a complete card object", () => {
+      const cardNumber = generateRandomCardNumber();
+      const expiryDate = generateExpiryDate();
+      const cvv = generateRandomCvv();
+
+      expect(cardNumber).toMatch(/^\d{16}$/);
+      expect(expiryDate).toMatch(/^\d{1,2}\/\d{2}$/);
+      expect(cvv).toMatch(/^\d{3}$/);
+    });
+
+    it("should generate unique card details on multiple calls", () => {
+      const cards = Array.from({ length: 5 }, () => ({
+        number: generateRandomCardNumber(),
+        expiry: generateExpiryDate(),
+        cvv: generateRandomCvv(),
+      }));
+
+      // Check that at least some values are different
+      const uniqueNumbers = new Set(cards.map((c) => c.number));
+      const uniqueCvvs = new Set(cards.map((c) => c.cvv));
+
+      expect(uniqueNumbers.size).toBeGreaterThan(1);
+      expect(uniqueCvvs.size).toBeGreaterThan(1);
+    });
+  });
+
+  describe("Performance tests", () => {
+    it("should generate card numbers efficiently", () => {
+      const startTime = performance.now();
+
+      for (let i = 0; i < 1000; i++) {
+        generateRandomCardNumber();
+      }
+
+      const endTime = performance.now();
+      expect(endTime - startTime).toBeLessThan(100); // Should complete in under 100ms
+    });
   });
 });
