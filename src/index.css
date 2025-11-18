@@ -68,6 +68,10 @@ input:disabled {
     @apply absolute p-2 pr-2 pt-0 items-end right-0 z-1 m-2;
   }
 
+  .app-logo img {
+    @apply h-6 w-auto;
+  }
+
   .logo-subtext {
     @apply hidden;
   }
@@ -81,19 +85,23 @@ input:disabled {
   }
 
   .card-container {
-    @apply p-0 pt-12 pb-14 bg-[#0c365a] relative overflow-auto gap-2.5;
+    @apply p-0 pt-8 pb-14 bg-[#0c365a] relative overflow-auto gap-2.5;
   }
 
   .card-header {
-    @apply px-2 text-white sticky top-0 gap-2.5;
+    @apply px-4 text-white sticky top-0 gap-2.5;
   }
 
   .card-tab {
-    @apply px-2 text-white sticky top-[76px];
+    @apply px-4 text-white sticky top-[76px];
   }
 
   .card-content {
-    @apply flex-col items-center border-0 shadow-none p-0 pt-4;
+    @apply flex-col items-center border-0 shadow-none p-0;
+  }
+
+  .card-sub-content {
+    @apply w-full p-0 items-center max-w-[500px];
   }
 
   .card-carousel {
@@ -105,7 +113,7 @@ input:disabled {
   }
 
   .card-actions {
-    @apply rounded-b-none rounded-t-2xl z-[99];
+    @apply rounded-b-none rounded-t-2xl z-[99] w-full;
   }
 
   .card-details {

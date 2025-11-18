@@ -41,7 +41,7 @@ const Content: React.FC = () => {
 
   return (
     <div className="text-black rounded-md flex flex-1 card-content shadow-md p-6 border border-gray-100">
-      <div className="flex flex-col gap-6 max-w-[381px] w-full h-fit">
+      <div className="flex flex-col gap-6 max-w-[381px] w-full h-fit card-sub-content">
         <Carousel
           className="card-carousel max-w-[381px] h-fit"
           onIndexChange={setActiveCardIndex}

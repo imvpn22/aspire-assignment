@@ -6,13 +6,14 @@ export const fakeApi = async <T>(fn: () => T): Promise<T> => {
   return new Promise((resolve, reject) => {
     console.log("API call started...");
     setTimeout(() => {
-      if (Math.random() > 0.5) {
-        console.log("API call succeeded.");
-        resolve(fn());
-      } else {
-        console.log("API call failed.");
-        reject(new Error("Simulating Random API failure!!"));
-      }
+      resolve(fn());
+      // if (Math.random() > 0.5) {
+      //   console.log("API call succeeded.");
+      //   resolve(fn());
+      // } else {
+      //   console.log("API call failed.");
+      //   reject(new Error("Simulating Random API failure!!"));
+      // }
     }, 1000); // Wait for 1 second
   });
 };
