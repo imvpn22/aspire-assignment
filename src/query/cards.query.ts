@@ -16,7 +16,7 @@ export const useGetCards = () => {
 
 export const useGetCardTransactions = (cardNumber: string) => {
   return useQuery({
-    queryKey: ["cardTransactions", cardNumber],
+    queryKey: ["cards", "cardTransactions", cardNumber],
     queryFn: () => getCardTransactions(cardNumber),
     enabled: !!cardNumber,
   });
@@ -27,8 +27,9 @@ export const useAddNewCard = () => {
     mutationKey: ["addNewCard"],
     mutationFn: (cardDetails: TCard) => addNewCard(cardDetails),
     onSuccess: () => {
+      console.log("New card added successfully. Invalidating queries...");
       queryClient.invalidateQueries({
-        queryKey: ["cards", "cardTransactions"],
+        queryKey: ["cards"],
       });
     },
     onError: (error) => {

@@ -19,13 +19,16 @@ export const fakeApi = async <T>(fn: () => T): Promise<T> => {
 };
 
 export const getCards = async () => {
+  console.log("Fetching cards data...");
   return fakeApi(async () => {
+    console.log("Retrieving cards from database...");
     const cards = await aspireDB.getItem<TCard[]>("cards");
 
     if (cards && cards.length > 0) {
       return cards;
     }
 
+    console.log("No cards found in database. Initializing with dummy data...");
     await aspireDB.setItem("cards", DUMMY_CARDS);
     return DUMMY_CARDS;
   });

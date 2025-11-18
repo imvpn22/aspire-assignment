@@ -38,7 +38,7 @@ const TransactionList: React.FC<TTransactionListProps> = ({
   refetch,
 }) => {
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner className="my-6" />;
   }
 
   if (isError) {
