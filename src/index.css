@@ -120,11 +120,11 @@ input:disabled {
   }
 
   .card-sub-content {
-    @apply w-full p-0 items-center max-w-[500px];
+    @apply w-full p-0 items-center max-w-[500px] pt-2;
   }
 
   .card-carousel {
-    @apply sticky top-[116px];
+    @apply sticky top-[124px];
   }
 
   .card-info {
