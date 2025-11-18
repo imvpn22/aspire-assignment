@@ -1,4 +1,5 @@
 import React, { type ReactNode } from "react";
+import { CloseIcon } from "../Icons";
 
 type TModalProps = {
   isOpen: boolean;
@@ -20,9 +21,9 @@ const Modal: React.FC<TModalProps> = ({ isOpen, onClose, children, title }) => {
             <h2 className="text-xl font-semibold">{title}</h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 cursor-pointer rounded-full p-2 focus:outline-none hover:bg-gray-200"
+              className="text-gray-400 hover:text-red-600 cursor-pointer rounded-full p-1 focus:outline-none hover:bg-red-200"
             >
-              ✕
+              <CloseIcon className="size-5" />
             </button>
           </div>
         )}

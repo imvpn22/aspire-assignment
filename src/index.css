@@ -39,7 +39,7 @@ body {
 }
 
 input {
-  @apply border border-gray-300 shadow-none px-4 py-2 rounded-lg;
+  @apply border border-gray-500 shadow-none px-4 py-2 rounded-lg text-black;
   font: inherit;
 }
 

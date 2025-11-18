@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import type { TCard } from "../../types";
 import { useAddNewCard } from "../../query/cards.query";
+import {
+  generateExpiryDate,
+  generateRandomCardNumber,
+  generateRandomCvv,
+} from "../../utils/card.utils";
+import Input from "../shared/Input";
 
 type TNewCardFormProps = {
   onSuccess?: () => void;
@@ -8,6 +14,11 @@ type TNewCardFormProps = {
 
 const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
   const [newCardName, setNewCardName] = useState("");
+  const [newCardNumber, setNewCardNumber] = useState(
+    generateRandomCardNumber()
+  );
+  const [newExpiryDate, setNewExpiryDate] = useState(generateExpiryDate());
+  const [newCvv, setNewCvv] = useState(generateRandomCvv());
 
   const { mutateAsync, isPending } = useAddNewCard();
 
@@ -15,9 +26,9 @@ const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
     e.preventDefault();
     const newCard: TCard = {
       cardHolderName: newCardName,
-      cardNumber: Math.random().toString().slice(2, 18).padStart(16, "0"),
-      expiryDate: `${Math.floor(Math.random() * 12) + 1}/${Math.floor(Math.random() * 10) + 25}`,
-      cvv: Math.floor(Math.random() * 900 + 100).toString(),
+      cardNumber: newCardNumber,
+      expiryDate: newExpiryDate,
+      cvv: newCvv,
       bankName: "Sample Bank",
       cardType: "credit",
     };
@@ -27,29 +38,37 @@ const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
 
   return (
     <form className="flex flex-col gap-6" onSubmit={handleAddCard}>
-      <input
-        type="text"
-        placeholder="Card Name"
-        className="border p-2 rounded"
+      <Input
+        label="Card name"
         value={newCardName}
         onChange={(e) => setNewCardName(e.target.value)}
+        required
         autoFocus
       />
 
-      <input
-        type="text"
-        placeholder="Card Number"
+      <Input
+        label="Card number"
         className="border p-2 rounded"
         disabled
-        value="Auto-generated"
+        value={newCardNumber
+          .split(/(.{4})/g)
+          .filter(Boolean)
+          .join(" ")}
       />
 
-      <input
-        type="date"
-        placeholder="Expiry Date"
+      <Input
+        label="Expiry date"
         className="border p-2 rounded"
         disabled
-        value="Auto-generated"
+        value={newExpiryDate}
+      />
+
+      <Input
+        type="password"
+        label="CVV"
+        className="border p-2 rounded"
+        disabled
+        value={newCvv}
       />
 
       <div className="flex items-center gap-4 self-end">

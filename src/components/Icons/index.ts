@@ -15,6 +15,7 @@ import { GrTransaction } from "react-icons/gr";
 import { IoMdAddCircle, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import {
   MdAttachMoney,
+  MdClose,
   MdDelete,
   MdElectricBolt,
   MdErrorOutline,
@@ -47,4 +48,5 @@ export {
   FaChevronCircleUp as ChevronCircleUpIcon,
   MdErrorOutline as ErrorOutlineIcon,
   FaChevronRight as ChevronRightIcon,
+  MdClose as CloseIcon,
 };
