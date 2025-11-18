@@ -57,15 +57,15 @@ input:disabled {
   scrollbar-color: gray transparent;
 }
 
-.styled-scrollbar:hover::scrollbar-thumb {
+.styled-scrollbar:hover::-webkit-scrollbar-thumb {
   @apply border-[3px] border-solid border-transparent bg-clip-content bg-gray-500;
 }
 
-.styled-scrollbar::scrollbar-track {
+.styled-scrollbar::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
 
-.styled-scrollbar::scrollbar-thumb {
+.styled-scrollbar::-webkit-scrollbar-thumb {
   @apply rounded-md;
 }
 
