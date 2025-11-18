@@ -1,22 +1,171 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
-import ErrorBoundary from "../../../components/shared/ErrorBoundry";
 import "@testing-library/jest-dom";
+import ErrorBoundary from "../../../components/shared/ErrorBoundry";
 
-// Mock the ErrorInfo component
-vi.mock("../../../components/shared/ErrorInfo", () => ({
-  default: ({ message }: { message?: string }) => (
-    <div data-testid="error-info">
-      Error occurred: {message || "Default error message"}
-    </div>
-  ),
-}));
-
-// Component that throws an error for testing
-const ThrowError = ({ shouldThrow }: { shouldThrow?: boolean }) => {
+// Component that throws an error when shouldThrow is true
+const ThrowError: React.FC<{ shouldThrow: boolean }> = ({ shouldThrow }) => {
   if (shouldThrow) {
     throw new Error("Test error");
   }
   return <div>No error</div>;
-};\n\n// Component that doesn't throw an error\nconst NoError = () => <div data-testid=\"no-error\">Working component</div>;\n\ndescribe(\"ErrorBoundary Component\", () => {\n  let consoleSpy: ReturnType<typeof vi.spyOn>;\n\n  beforeEach(() => {\n    // Suppress console.error in tests since we expect errors\n    consoleSpy = vi.spyOn(console, \"error\").mockImplementation(() => {});\n  });\n\n  afterEach(() => {\n    consoleSpy.mockRestore();\n  });\n\n  test(\"renders children when there is no error\", () => {\n    const { getByTestId } = render(\n      <ErrorBoundary>\n        <NoError />\n      </ErrorBoundary>\n    );\n    \n    expect(getByTestId(\"no-error\")).toBeInTheDocument();\n  });\n\n  test(\"renders ErrorInfo when child component throws an error\", () => {\n    const { getByTestId } = render(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    expect(getByTestId(\"error-info\")).toBeInTheDocument();\n  });\n\n  test(\"renders ErrorInfo with custom message when error occurs\", () => {\n    const customMessage = \"Custom error boundary message\";\n    const { getByText } = render(\n      <ErrorBoundary message={customMessage}>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    expect(getByText(`Error occurred: ${customMessage}`)).toBeInTheDocument();\n  });\n\n  test(\"does not render ErrorInfo when fallback is false\", () => {\n    const { container } = render(\n      <ErrorBoundary fallback={false}>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    // When fallback is false and error occurs, nothing should render\n    expect(container).toBeEmptyDOMElement();\n  });\n\n  test(\"calls onCatch callback when error occurs\", () => {\n    const mockOnCatch = vi.fn();\n    \n    render(\n      <ErrorBoundary onCatch={mockOnCatch}>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    expect(mockOnCatch).toHaveBeenCalledOnce();\n  });\n\n  test(\"does not call onCatch when no error occurs\", () => {\n    const mockOnCatch = vi.fn();\n    \n    render(\n      <ErrorBoundary onCatch={mockOnCatch}>\n        <NoError />\n      </ErrorBoundary>\n    );\n    \n    expect(mockOnCatch).not.toHaveBeenCalled();\n  });\n\n  test(\"updates state when componentDidCatch is called\", () => {\n    const { getByTestId } = render(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    // After error is thrown, ErrorInfo should be rendered\n    expect(getByTestId(\"error-info\")).toBeInTheDocument();\n  });\n\n  test(\"renders children normally before error occurs\", () => {\n    const { getByText, rerender } = render(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={false} />\n      </ErrorBoundary>\n    );\n    \n    expect(getByText(\"No error\")).toBeInTheDocument();\n    \n    // Now trigger an error\n    rerender(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    expect(getByText(\"Error occurred: Default error message\")).toBeInTheDocument();\n  });\n\n  test(\"uses default fallback value when not provided\", () => {\n    const { getByTestId } = render(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    // Default fallback should be true, so ErrorInfo should render\n    expect(getByTestId(\"error-info\")).toBeInTheDocument();\n  });\n\n  test(\"handles multiple children\", () => {\n    const { getByText } = render(\n      <ErrorBoundary>\n        <div>Child 1</div>\n        <div>Child 2</div>\n        <NoError />\n      </ErrorBoundary>\n    );\n    \n    expect(getByText(\"Child 1\")).toBeInTheDocument();\n    expect(getByText(\"Child 2\")).toBeInTheDocument();\n    expect(getByTestId(\"no-error\")).toBeInTheDocument();\n  });\n\n  test(\"maintains error state after error is caught\", () => {\n    const { getByTestId, rerender } = render(\n      <ErrorBoundary>\n        <ThrowError shouldThrow={true} />\n      </ErrorBoundary>\n    );\n    \n    expect(getByTestId(\"error-info\")).toBeInTheDocument();\n    \n    // Re-render with non-throwing component, but error state should persist\n    rerender(\n      <ErrorBoundary>\n        <NoError />\n      </ErrorBoundary>\n    );\n    \n    // Error boundary should still show error info because state is maintained\n    expect(getByTestId(\"error-info\")).toBeInTheDocument();\n  });\n});
+};
+
+// Component that doesn't throw an error
+const NoError = () => <div data-testid="no-error">Working component</div>;
+
+describe("ErrorBoundary Component", () => {
+  let consoleSpy: ReturnType<typeof vi.spyOn>;
+
+  beforeEach(() => {
+    // Suppress console.error in tests since we expect errors
+    consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
+
+  test("renders children when there is no error", () => {
+    const { getByTestId } = render(
+      <ErrorBoundary>
+        <NoError />
+      </ErrorBoundary>
+    );
+
+    expect(getByTestId("no-error")).toBeInTheDocument();
+  });
+
+  test("renders ErrorInfo when child component throws an error", () => {
+    const { getByTestId } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    expect(getByTestId("error-info")).toBeInTheDocument();
+  });
+
+  test("renders ErrorInfo with custom message when error occurs", () => {
+    const customMessage = "Custom error boundary message";
+    const { getByText } = render(
+      <ErrorBoundary message={customMessage}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    expect(getByText(customMessage)).toBeInTheDocument();
+  });
+  test("does not render ErrorInfo when fallback is false", () => {
+    const { container } = render(
+      <ErrorBoundary fallback={false}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    // When fallback is false and error occurs, nothing should render
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  test("calls onCatch callback when error occurs", () => {
+    const mockOnCatch = vi.fn();
+
+    render(
+      <ErrorBoundary onCatch={mockOnCatch}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    expect(mockOnCatch).toHaveBeenCalledOnce();
+  });
+
+  test("does not call onCatch when no error occurs", () => {
+    const mockOnCatch = vi.fn();
+
+    render(
+      <ErrorBoundary onCatch={mockOnCatch}>
+        <NoError />
+      </ErrorBoundary>
+    );
+
+    expect(mockOnCatch).not.toHaveBeenCalled();
+  });
+
+  test("updates state when componentDidCatch is called", () => {
+    const { getByTestId } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    // After error is thrown, ErrorInfo should be rendered
+    expect(getByTestId("error-info")).toBeInTheDocument();
+  });
+
+  test("renders children normally before error occurs", () => {
+    const { getByText, rerender } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={false} />
+      </ErrorBoundary>
+    );
+
+    expect(getByText("No error")).toBeInTheDocument();
+
+    // Now trigger an error
+    rerender(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    expect(
+      getByText("Something went wrong. Please try again.")
+    ).toBeInTheDocument();
+  });
+
+  test("uses default fallback value when not provided", () => {
+    const { getByTestId } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    // Default fallback should be true, so ErrorInfo should render
+    expect(getByTestId("error-info")).toBeInTheDocument();
+  });
+
+  test("handles multiple children", () => {
+    const { getByText, getByTestId } = render(
+      <ErrorBoundary>
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <NoError />
+      </ErrorBoundary>
+    );
+
+    expect(getByText("Child 1")).toBeInTheDocument();
+    expect(getByText("Child 2")).toBeInTheDocument();
+    expect(getByTestId("no-error")).toBeInTheDocument();
+  });
+
+  test("maintains error state after error is caught", () => {
+    const { getByTestId, rerender } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+
+    expect(getByTestId("error-info")).toBeInTheDocument();
+
+    // Re-render with non-throwing component, but error state should persist
+    rerender(
+      <ErrorBoundary>
+        <NoError />
+      </ErrorBoundary>
+    );
+
+    // Error boundary should still show error info because state is maintained
+    expect(getByTestId("error-info")).toBeInTheDocument();
+  });
+});

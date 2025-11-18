@@ -15,10 +15,14 @@ const ErrorInfo: React.FC<TErrorProps> = ({
   return (
     <div
       className={`flex flex-col items-center justify-center min-h-64 p-8 h-full w-full ${className}`}
+      data-testid="error-info"
     >
       <div className="text-center">
         <div className="mb-4">
-          <ErrorOutlineIcon className="mx-auto h-12 w-12 text-red-500" />
+          <ErrorOutlineIcon
+            className="mx-auto h-12 w-12 text-red-500"
+            data-testid="error-icon"
+          />
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">Error</h3>
         <p className="text-gray-600 mb-6">{message}</p>

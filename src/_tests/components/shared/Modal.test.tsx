@@ -106,7 +106,7 @@ describe("Modal Component", () => {
     expect(modalContainer).toHaveClass("fixed", "inset-0", "z-1000");
 
     // Check modal content area
-    const modalContent = screen.getByText("Modal Content").closest("div");
+    const modalContent = screen.getByLabelText("Modal Content");
     expect(modalContent).toHaveClass(
       "relative",
       "bg-white",
