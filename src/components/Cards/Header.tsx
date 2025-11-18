@@ -21,7 +21,7 @@ const Header: React.FC<THeaderProps> = ({ onAddNewCard, balance }) => {
         </div>
         <button
           onClick={onAddNewCard}
-          className="text-white bg-[#325BAF] px-3 py-1 rounded-md flex items-center gap-2"
+          className="text-white bg-[#325BAF] px-3 py-1 rounded-md flex items-center gap-2 new-card-button"
         >
           <AddCircleIcon />
           New Card

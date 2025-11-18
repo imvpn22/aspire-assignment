@@ -92,6 +92,10 @@ input:disabled {
     @apply px-4 text-white sticky top-0 gap-2.5;
   }
 
+  .new-card-button {
+    @apply px-2 py-1 text-sm bg-transparent text-[#23CEFD] font-semibold;
+  }
+
   .card-tab {
     @apply px-4 text-white sticky top-[76px];
   }
