@@ -2,6 +2,32 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Tools and Technologies
+
+This project uses the following tools and technologies:
+
+- **React** - JavaScript library for building user interfaces
+- **TypeScript** - Typed superset of JavaScript
+- **Vite** - Fast build tool and development server
+- **ESLint** - JavaScript/TypeScript linting utility
+- **Node.js** - JavaScript runtime environment
+- **npm/yarn/pnpm** - Package managers
+- **Hot Module Replacement (HMR)** - Live reloading during development
+
+## API Simulation
+
+This project includes API simulation for testing success and failure scenarios:
+
+### Mock API Features
+- **Success responses** - Simulated successful API calls with sample data
+- **Error handling** - Simulated network errors and HTTP error responses
+- **Loading states** - Delayed responses to test loading indicators
+- **Random failures** - Configurable failure rates for testing resilience
+
+
+
+## Available Plugins
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
