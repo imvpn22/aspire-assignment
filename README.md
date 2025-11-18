@@ -13,18 +13,21 @@ This project uses the following tools and technologies:
 - **Node.js** - JavaScript runtime environment
 - **npm/yarn/pnpm** - Package managers
 - **Hot Module Replacement (HMR)** - Live reloading during development
+- **Responsive Design** - Mobile-first approach with CSS media queries for optimal viewing across devices
+- **React Query** - Data fetching and caching library for React applications
+- **LocalForage** - Offline storage library with fallback support for IndexedDB, WebSQL, and localStorage
 
 ## API Simulation
 
-This project includes API simulation for testing success and failure scenarios:
+This project includes API simulation for testing success and failure scenarios
 
 ### Mock API Features
 - **Success responses** - Simulated successful API calls with sample data
 - **Error handling** - Simulated network errors and HTTP error responses
 - **Loading states** - Delayed responses to test loading indicators
 - **Random failures** - Configurable failure rates for testing resilience
-
-
+- **Data caching** - React Query provides intelligent caching and background updates
+- **Offline support** - LocalForage enables persistent storage for offline functionality
 
 ## Available Plugins
 
