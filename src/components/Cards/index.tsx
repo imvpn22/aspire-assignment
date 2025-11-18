@@ -23,17 +23,11 @@ const Cards: React.FC = () => {
   const activeCard = cardsData[activeCardIndex];
 
   if (isCardsLoading) {
-    return <Spinner className="bg-white" />;
+    return <Spinner />;
   }
 
   if (isCardsError) {
-    return (
-      <ErrorInfo
-        onRetry={refetchCards}
-        message={cardsError.message}
-        className="bg-white"
-      />
-    );
+    return <ErrorInfo onRetry={refetchCards} message={cardsError.message} />;
   }
 
   const openNewCardModal = () => {
@@ -45,7 +39,7 @@ const Cards: React.FC = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col gap-6 card-container flex-1 p-8">
+    <div className="flex flex-col gap-6 card-container flex-1 p-8">
       <Header
         onAddNewCard={openNewCardModal}
         balance={activeCard.availableBalance}
