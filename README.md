@@ -2,6 +2,10 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Live Demo
+
+🚀 **Deployed Application**: [https://imvpn22-aspire.netlify.app/cards](https://imvpn22-aspire.netlify.app/cards)
+
 ## Tools and Technologies
 
 This project uses the following tools and technologies:
@@ -100,3 +104,4 @@ export default defineConfig([
   },
 ])
 ```
+
