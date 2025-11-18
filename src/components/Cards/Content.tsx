@@ -9,7 +9,7 @@ import { DUMMY_CARD_DATA } from "../../constants/cards.constants";
 import { CreditCardIcon, TransactionIcon } from "../Icons";
 import Spinner from "../shared/Spinner";
 import ErrorInfo from "../shared/ErrorInfo";
-import { useGetCards, useGetCardTransactions } from "../../query/cards.query";
+import { useGetCards } from "../../query/cards.query";
 
 const Content: React.FC = () => {
   const [activeCardIndex, setActiveCardIndex] = React.useState(0);
@@ -23,13 +23,6 @@ const Content: React.FC = () => {
   } = useGetCards();
 
   const cardData = cardsData[activeCardIndex] ?? DUMMY_CARD_DATA;
-
-  const {
-    data: transactions,
-    isLoading: isTransactionsLoading,
-    isError: isTransactionsError,
-    refetch: refetchTransactions,
-  } = useGetCardTransactions(cardData.cardNumber);
 
   if (isCardsLoading) {
     return <Spinner />;
@@ -72,12 +65,7 @@ const Content: React.FC = () => {
           }
           defaultExpanded
         >
-          <TransactionList
-            transactions={transactions ?? []}
-            isLoading={isTransactionsLoading}
-            isError={isTransactionsError}
-            refetch={refetchTransactions}
-          />
+          <TransactionList cardNumber={cardData.cardNumber} />
         </Panel>
       </div>
     </div>

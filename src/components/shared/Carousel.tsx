@@ -108,6 +108,7 @@ const Carousel: React.FC<TCarouselProps> = ({
           <button
             key={index}
             onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
             className={`w-3 h-3 transition-all duration-300 rounded-full cursor-pointer ${
               currentIndex === index ? "bg-green-500 w-8" : "bg-gray-400"
             }`}

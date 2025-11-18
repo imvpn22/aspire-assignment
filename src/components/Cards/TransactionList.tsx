@@ -13,12 +13,10 @@ import {
 } from "../Icons";
 import Spinner from "../shared/Spinner";
 import ErrorInfo from "../shared/ErrorInfo";
+import { useGetCardTransactions } from "../../query/cards.query";
 
 type TTransactionListProps = {
-  transactions: Transaction[];
-  isLoading: boolean;
-  isError: boolean;
-  refetch: () => void;
+  cardNumber: string;
 };
 
 const TransactionCategory: Record<string, TTransactionCategory> = {
@@ -31,18 +29,21 @@ const TransactionCategory: Record<string, TTransactionCategory> = {
   INCOME: "Income",
 };
 
-const TransactionList: React.FC<TTransactionListProps> = ({
-  transactions,
-  isLoading,
-  isError,
-  refetch,
-}) => {
+const TransactionList: React.FC<TTransactionListProps> = ({ cardNumber }) => {
+  const {
+    data: transactions = [],
+    isLoading,
+    isError,
+    refetch,
+    error,
+  } = useGetCardTransactions(cardNumber);
+
   if (isLoading) {
     return <Spinner className="my-6" />;
   }
 
   if (isError) {
-    return <ErrorInfo onRetry={refetch} />;
+    return <ErrorInfo message={error?.message} onRetry={refetch} />;
   }
 
   return (

@@ -38,7 +38,7 @@ const Panel: React.FC<TPanelProps> = ({
           isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        {children}
+        {isExpanded && children}
       </div>
     </div>
   );
