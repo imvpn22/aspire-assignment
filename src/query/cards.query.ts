@@ -34,6 +34,7 @@ export const useAddNewCard = () => {
     },
     onError: (error) => {
       console.error("Error adding new card:", error);
+      alert("Failed to add new card. Please try again.");
     },
   });
 };

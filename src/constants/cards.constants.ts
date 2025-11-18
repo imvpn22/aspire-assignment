@@ -8,6 +8,7 @@ export const DUMMY_CARDS: TCard[] = [
     cardType: "credit",
     cvv: "123",
     bankName: "Chase Bank",
+    availableBalance: 243254,
   },
   {
     cardNumber: "9876543210987654",
@@ -16,6 +17,7 @@ export const DUMMY_CARDS: TCard[] = [
     cardType: "debit",
     cvv: "456",
     bankName: "Bank of America",
+    availableBalance: 234,
   },
   {
     cardNumber: "5555666677778888",
@@ -24,30 +26,7 @@ export const DUMMY_CARDS: TCard[] = [
     cardType: "credit",
     cvv: "789",
     bankName: "Wells Fargo",
-  },
-  {
-    cardNumber: "4111111111111111",
-    cardHolderName: "Michael Brown",
-    expiryDate: "08/26",
-    cardType: "credit",
-    cvv: "321",
-    bankName: "Citibank",
-  },
-  {
-    cardNumber: "5105105105105100",
-    cardHolderName: "Sarah Wilson",
-    expiryDate: "03/27",
-    cardType: "debit",
-    cvv: "654",
-    bankName: "US Bank",
-  },
-  {
-    cardNumber: "3782822463100051",
-    cardHolderName: "David Martinez",
-    expiryDate: "07/25",
-    cardType: "credit",
-    cvv: "987",
-    bankName: "American Express",
+    availableBalance: 547640,
   },
 ];
 export const DUMMY_CARD_DATA: TCard = {
@@ -57,10 +36,8 @@ export const DUMMY_CARD_DATA: TCard = {
   cardType: "credit",
   cvv: "123",
   bankName: "Chase Bank",
+  availableBalance: 45744,
 };
-
-// Dummy transaction data
-// Transaction categories type
 
 export const DUMMY_TRANSACTIONS: Transaction[] = [
   {

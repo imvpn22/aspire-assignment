@@ -5,32 +5,21 @@ import CardActions from "./CardActions";
 import Panel from "../shared/Panel";
 import CardDetails from "./CardDetails";
 import TransactionList from "./TransactionList";
-import { DUMMY_CARD_DATA } from "../../constants/cards.constants";
 import { CreditCardIcon, TransactionIcon } from "../Icons";
-import Spinner from "../shared/Spinner";
-import ErrorInfo from "../shared/ErrorInfo";
-import { useGetCards } from "../../query/cards.query";
+import type { TCard } from "../../types";
 
-const Content: React.FC = () => {
-  const [activeCardIndex, setActiveCardIndex] = React.useState(0);
+type TContentProps = {
+  cardsData: TCard[];
+  activeCardIndex: number;
+  setActiveCardIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
-  const {
-    data: cardsData = [],
-    isLoading: isCardsLoading,
-    isError: isCardsError,
-    refetch: refetchCards,
-    error: cardsError,
-  } = useGetCards();
-
-  const cardData = cardsData[activeCardIndex] ?? DUMMY_CARD_DATA;
-
-  if (isCardsLoading) {
-    return <Spinner />;
-  }
-
-  if (isCardsError) {
-    return <ErrorInfo onRetry={refetchCards} message={cardsError.message} />;
-  }
+const Content: React.FC<TContentProps> = ({
+  cardsData,
+  activeCardIndex,
+  setActiveCardIndex,
+}) => {
+  const cardData = cardsData[activeCardIndex];
 
   return (
     <div className="text-black rounded-md flex flex-1 card-content shadow-md p-6 border border-gray-100">

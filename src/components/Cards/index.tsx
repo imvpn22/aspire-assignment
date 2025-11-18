@@ -4,9 +4,37 @@ import CardTab from "./CardTab";
 import Content from "./Content";
 import Modal from "../shared/Modal";
 import NewCardForm from "./NewCardForm";
+import ErrorInfo from "../shared/ErrorInfo";
+import Spinner from "../shared/Spinner";
+import { useGetCards } from "../../query/cards.query";
 
 const Cards: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = React.useState(false);
+  const [activeCardIndex, setActiveCardIndex] = React.useState(0);
+
+  const {
+    data: cardsData = [],
+    isLoading: isCardsLoading,
+    isError: isCardsError,
+    refetch: refetchCards,
+    error: cardsError,
+  } = useGetCards();
+
+  const activeCard = cardsData[activeCardIndex];
+
+  if (isCardsLoading) {
+    return <Spinner className="bg-white" />;
+  }
+
+  if (isCardsError) {
+    return (
+      <ErrorInfo
+        onRetry={refetchCards}
+        message={cardsError.message}
+        className="bg-white"
+      />
+    );
+  }
 
   const openNewCardModal = () => {
     setIsNewCardModalOpen(true);
@@ -18,9 +46,16 @@ const Cards: React.FC = () => {
 
   return (
     <div className="bg-white flex flex-col gap-6 card-container flex-1 p-8">
-      <Header onAddNewCard={openNewCardModal} />
+      <Header
+        onAddNewCard={openNewCardModal}
+        balance={activeCard.availableBalance}
+      />
       <CardTab />
-      <Content />
+      <Content
+        cardsData={cardsData}
+        activeCardIndex={activeCardIndex}
+        setActiveCardIndex={setActiveCardIndex}
+      />
       <Modal
         isOpen={isNewCardModalOpen}
         onClose={handleCloseModal}

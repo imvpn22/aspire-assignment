@@ -4,14 +4,18 @@ import { ErrorOutlineIcon } from "../Icons";
 type TErrorProps = {
   onRetry?: () => void;
   message?: string;
+  className?: string;
 };
 
 const ErrorInfo: React.FC<TErrorProps> = ({
   onRetry = () => window.location.reload(),
   message = "Something went wrong. Please try again.",
+  className = "",
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-64 p-8 h-full w-full">
+    <div
+      className={`flex flex-col items-center justify-center min-h-64 p-8 h-full w-full ${className}`}
+    >
       <div className="text-center">
         <div className="mb-4">
           <ErrorOutlineIcon className="mx-auto h-12 w-12 text-red-500" />

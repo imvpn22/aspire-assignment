@@ -29,6 +29,7 @@ const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
       cvv: newCvv,
       bankName: "Sample Bank",
       cardType: "credit",
+      availableBalance: Math.floor(Math.random() * 5000) + 1000,
     };
     await mutateAsync(newCard);
     onSuccess?.();

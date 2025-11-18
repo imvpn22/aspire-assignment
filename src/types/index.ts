@@ -29,4 +29,5 @@ export type TCard = {
   cardType: "credit" | "debit";
   cvv: string;
   bankName: string;
+  availableBalance: number;
 };
