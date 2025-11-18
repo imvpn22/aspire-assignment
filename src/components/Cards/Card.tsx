@@ -11,7 +11,7 @@ type TCardProps = {
 const Card: React.FC<TCardProps> = ({ cardDetails }) => {
   const { cardNumber, expiryDate, cvv, cardHolderName } = cardDetails ?? {};
 
-  const [showDetails, setShowDetails] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <div className="rounded-lg flex flex-col text-white w-full pt-8 relative items-center box-border">
@@ -51,7 +51,9 @@ const Card: React.FC<TCardProps> = ({ cardDetails }) => {
               <span className="text-white/70 text-xs uppercase tracking-wide">
                 Valid Thru
               </span>
-              <span className="font-semibold">{expiryDate}</span>
+              <span className="font-semibold">
+                {showDetails ? expiryDate : "MM/YY"}
+              </span>
             </div>
             <div className="flex flex-col">
               <span className="text-white/70 text-xs uppercase tracking-wide">

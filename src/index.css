@@ -52,6 +52,27 @@ input:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
 
+.styled-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: gray transparent;
+}
+
+.styled-scrollbar::-webkit-scrollbar {
+  @apply w-3;
+}
+
+.styled-scrollbar:hover::-webkit-scrollbar-thumb {
+  @apply border-[3px] border-solid border-transparent bg-clip-content bg-gray-500;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  @apply rounded-md;
+}
+
 /* Mobile breakpoint */
 @media (max-width: 1024px) {
   .app-root {

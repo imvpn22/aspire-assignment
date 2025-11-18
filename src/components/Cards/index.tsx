@@ -39,7 +39,7 @@ const Cards: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 card-container flex-1 p-8">
+    <div className="flex flex-col gap-6 card-container flex-1 p-8 overflow-auto styled-scrollbar">
       <Header
         onAddNewCard={openNewCardModal}
         balance={activeCard.availableBalance}
