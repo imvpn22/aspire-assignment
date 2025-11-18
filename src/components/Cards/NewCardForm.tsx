@@ -14,11 +14,9 @@ type TNewCardFormProps = {
 
 const NewCardForm: React.FC<TNewCardFormProps> = ({ onSuccess }) => {
   const [newCardName, setNewCardName] = useState("");
-  const [newCardNumber, setNewCardNumber] = useState(
-    generateRandomCardNumber()
-  );
-  const [newExpiryDate, setNewExpiryDate] = useState(generateExpiryDate());
-  const [newCvv, setNewCvv] = useState(generateRandomCvv());
+  const [newCardNumber] = useState(generateRandomCardNumber());
+  const [newExpiryDate] = useState(generateExpiryDate());
+  const [newCvv] = useState(generateRandomCvv());
 
   const { mutateAsync, isPending } = useAddNewCard();
 
