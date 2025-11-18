@@ -2,11 +2,14 @@ import { DUMMY_CARDS, DUMMY_TRANSACTIONS } from "../constants/cards.constants";
 import type { TCard } from "../types";
 import { aspireDB } from "../utils/clientDB.utils";
 
-export const fakeApi = async <T>(fn: () => T): Promise<T> => {
+export const fakeApi = async <T>(
+  fn: () => T,
+  failureRate: number = 0.2
+): Promise<T> => {
   return new Promise((resolve, reject) => {
     console.log("API call started...");
     setTimeout(() => {
-      if (Math.random() > 0.5) {
+      if (Math.random() > failureRate) {
         console.log("API call succeeded.");
         resolve(fn());
       } else {
